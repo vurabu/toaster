@@ -1,0 +1,25 @@
+# Copyright 2008 Santiago M. Mola
+# Copyright 2009 Ingmar Vanhassel
+# Copyright 2010 Markus Rothe
+# Copyright 2012 Taras Pashkin
+# Distributed under the terms of the GNU General Public License v2
+
+require hackage
+
+SUMMARY="A haskell binding to the X11 graphics library"
+HOMEPAGE="https://github.com/haskell-pkg-janitors/X11"
+
+LICENCES="BSD-3"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libX11
+        x11-libs/libXinerama
+
+    $(haskell_lib_dependencies "
+        dev-haskell/syb
+    ")
+"
+
