@@ -16,11 +16,12 @@ DEPENDENCIES="
         app-shells/bash
         media-libs/flac
         app-cdr/cuetools
+        media-sound/shntool
 "
 
-#src_prepare () {
-#    expatch ${FILES}/remove_shell_check.patch
-#}
+src_prepare () {
+    expatch ${FILES}/remove_shell_check.patch
+}
 
 src_install() {
     dobin "${PN}"
