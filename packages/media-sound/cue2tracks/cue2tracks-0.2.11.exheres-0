@@ -7,11 +7,11 @@ DOWNLOADS="http://krigstasks-samling.googlecode.com/files/${P}.tar.bz2"
 
 SLOT="0"
 PLATFORMS="~x86 ~amd64"
-MYOPTIONS="flake mac tta shorten wavpack mp3 vorbis"
+MYOPTIONS="vorbis"
 
 DEPENDENCIES="
     build:
-        vorbis? (media-sound/vorbis-tools)
+        vorbis? ( media-sound/vorbis-tools )
     run:
         app-shells/bash
         media-libs/flac
