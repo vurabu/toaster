@@ -95,5 +95,5 @@ src_install() {
 
     insinto /usr/share/games/${PN}
 
-    doins -r ${WORKBASE}/release/*
+    doins -r ${WORK}/release
 }
