@@ -52,7 +52,7 @@ pkg_setup() {
     if option openal ; then
         export BUILD_SND_OPENAL=YES
     else
-        export BUILD_SND_QF=YES
+        export BUILD_SND_OPENAL=NO
     fi
 
     if option debug ; then
@@ -61,6 +61,7 @@ pkg_setup() {
    
     # FIXME
     export BASE_ARCH=amd64
+    export BUILD_SND_QF=YES
     export BUILD_ANGELWRAP=YES
     export BUILD_IRC=YES
 }
