@@ -3,7 +3,7 @@
 
 CUR_PNV=${PN}_${PV}
 BASE_PNV=${PN}_0.61
-SUMMARY="A free online multiplayer competitive FPS based on the Qfusion engine"
+SUMMARY="A free online multiplayer FPS based on the Qfusion engine"
 HOMEPAGE="http://www.warsow.net/"
 DOWNLOADS="
     http://www.zcdn.org/dl/${BASE_PNV}_unified.zip
@@ -67,7 +67,8 @@ pkg_setup() {
     fi
 
     if option debug ; then
-        export DEBUG_BUILD=$(yesno debug) \
+        export DEBUG_BUILD=$(yesno debug)
+    fi
 
     export BUILD_ANGELWRAP=YES
     export BUILD_IRC=YES
