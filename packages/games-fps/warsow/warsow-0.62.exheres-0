@@ -95,5 +95,6 @@ src_install() {
 
     insinto /usr/share/games/${PN}
 
-    doins -r release/{basewsw,libs}
+    doins -r ../../${BASE_PNV}_unified/*
+    doins -r release/*
 }
