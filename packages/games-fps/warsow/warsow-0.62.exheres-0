@@ -13,7 +13,7 @@ DOWNLOADS="
 
 SLOT="0"
 PLATFORMS="amd64 x86"
-MYOPTIONS="debug dedicated irc openal opengl"
+MYOPTIONS="debug dedicated openal opengl"
 
 DEPENDENCIES="
     build+run:
