@@ -37,7 +37,7 @@ DEPENDENCIES="
         )
 "
 
-WORK="${WORKBASE}/sources"
+WORK="${WORKBASE}/source"
 
 pkg_setup() {
     if option opengl || ! option dedicated ; then
