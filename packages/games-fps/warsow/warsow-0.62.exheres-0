@@ -12,7 +12,7 @@ DOWNLOADS="
 "
 
 SLOT="0"
-PLATFORMS="amd64 x86"
+PLATFORMS="amd64"
 MYOPTIONS="debug dedicated openal opengl"
 
 DEPENDENCIES="
@@ -40,10 +40,6 @@ DEPENDENCIES="
 WORK="${WORKBASE}/sources"
 
 pkg_setup() {
-    if option amd64 ; then
-        export BASE_ARCH=amd64
-    elif option x86 ; then
-        export BASE_ARCH=amd
     else
         print "fuck this" && die
     fi
@@ -66,7 +62,9 @@ pkg_setup() {
     if option debug ; then
         export DEBUG_BUILD=$(yesno debug)
     fi
-
+   
+    # FIXME
+    export BASE_ARCH=amd64
     export BUILD_ANGELWRAP=YES
     export BUILD_IRC=YES
 }
