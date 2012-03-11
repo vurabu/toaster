@@ -66,10 +66,10 @@ pkg_setup() {
 }
 
 src_unpack() {
-    unpack ${FETCHEDDIR}/${CUR_PNV}_sdk.zip
-    unpack ${FETCHEDDIR}/${BASE_PNV}_unified.zip
+    unpack ${CUR_PNV}_sdk.zip
+    unpack ${BASE_PNV}_unified.zip
     cd ${BASE_PNV}_unified || die
-    unpack ${FETCHDIR}/${CUR_PNV}_update.zip
+    unpack ${CUR_PNV}_update.zip
 }
 
 src_prepare() {
