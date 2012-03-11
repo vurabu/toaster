@@ -1,4 +1,3 @@
-# Copyright 2012 Taras Pashkin <vurabu@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Script for split audio image files with cue sheet to tracks"
