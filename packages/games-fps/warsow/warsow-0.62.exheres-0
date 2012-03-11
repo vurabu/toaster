@@ -16,27 +16,25 @@ PLATFORMS="amd64 x86"
 MYOPTIONS="debug dedicated irc openal opengl"
 
 DEPENDENCIES="
-    build:
+    build+run:
         app-arch/unzip
         x11-utils/makedepend
         openal? ( dev-util/pkg-config )
         opengl? (
-            x11-proto/xf86dgaproto
-            x11-proto/xf86vidmodeproto
-            x11-proto/xineramaproto
+            build:
+                x11-proto/xf86dgaproto
+                x11-proto/xf86vidmodeproto
+                x11-proto/xineramaproto
+            run:
+                media-libs/jpeg
+                media-libs/libvorbis
+                media-libs/SDL
+                x11-dir/mesa
+                x11-libs/libXinerama
+                x11-libs/libXxf86dga
+                x11-libs/libXxf86vm
+                openal? ( media-libs/openal )
         )
-    run:
-        opengl? (
-            media-libs/jpeg
-            media-libs/libvorbis
-            media-libs/SDL
-            x11-dir/mesa
-            x11-libs/libXinerama
-            x11-libs/libXxf86dga
-            x11-libs/libXxf86vm
-            openal? ( media-libs/openal )
-        )
-    )
 "
 
 WORK="${WORKBASE}/sources"
