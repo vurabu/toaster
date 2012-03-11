@@ -79,8 +79,6 @@ src_prepare() {
     sed -i 's/jpeg_mem_src/_jpeg_mem_src/g' ref_gl/r_image.c
 }
 
-default_src_compile()
-
 src_install() {
     cd release
 
