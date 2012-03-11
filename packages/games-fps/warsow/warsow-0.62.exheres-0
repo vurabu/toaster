@@ -90,10 +90,10 @@ src_compile() {
 src_install() {
     cd release
 
-    option opengl && dobin ${PN}
-    option dedicated && dobin wsw_server && dobin wswtv_server
+    option opengl && dobin ${PN}.*
+    option dedicated && dobin wsw_server.* && dobin wswtv_server.*
 
     insinto /usr/share/games/${PN}
 
-    doins -r ${WORK}/release
+    doins -r release/{basewsw,libs}
 }
