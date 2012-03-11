@@ -77,7 +77,14 @@ src_prepare() {
     sed -i 's:openal-config:pkg-config:g' Makefile
     sed -i 's:--as-needed:-Wc,--as-needed:g' Makefile
     sed -i 's:libopenal.so.0:libopenal.so:g' snd_openal/snd_main.c
-    sed -i 's/jpeg_mem_src/_jpeg_mem_src/g' ref_gl/r_image.c
+    sed -i 's:jpeg_mem_src:_jpeg_mem_src:g' ref_gl/r_image.c
+}
+
+src_compile() {
+    cd ../libsrcs/angelscript/angelSVN/sdk/angelscript/projects/gnuc
+    make
+    cd ${WORK}
+    make
 }
 
 src_install() {
