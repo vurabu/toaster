@@ -77,12 +77,10 @@ src_compile() {
 
 DATA_DIR="/usr/share/games"
 
-pkg_preinst() {
-    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g' release/warsow
-}
-
 src_install() {
     cd release
+
+    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g' warsow
 
     option opengl && dobin ${PN} && dobin ${PN}.*
     option server && dobin wsw_server && dobin wsw_server.*
