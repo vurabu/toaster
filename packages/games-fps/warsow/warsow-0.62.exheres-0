@@ -62,10 +62,10 @@ src_unpack() {
 }
 
 src_prepare() {
-#    sed -i 's:openal-config:pkg-config:g' Makefile
-    sed -i 's:--as-needed:-Wc,--as-needed:g' Makefile
-#    sed -i 's:libopenal.so.0:libopenal.so:g' snd_openal/snd_main.c
-#    sed -i 's:jpeg_mem_src:_jpeg_mem_src:g' ref_gl/r_image.c
+#    sed -i "s:openal-config:pkg-config:g" Makefile
+    sed -i "s:--as-needed:-Wc,--as-needed:g" Makefile
+#    sed -i "s:libopenal.so.0:libopenal.so:g" snd_openal/snd_main.c
+#    sed -i "s:jpeg_mem_src:_jpeg_mem_src:g" ref_gl/r_image.c
 }
 
 src_compile() {
@@ -80,7 +80,7 @@ DATA_DIR="/usr/share/games"
 src_install() {
     cd release
 
-    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g' warsow
+    sed -i "s:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g" warsow
 
     option opengl && dobin ${PN} && dobin ${PN}.*
     option server && dobin wsw_server && dobin wsw_server.*
