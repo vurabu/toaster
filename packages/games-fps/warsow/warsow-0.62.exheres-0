@@ -75,6 +75,12 @@ src_compile() {
     emake
 }
 
+DATA_DIR="/usr/share/games"
+
+pkg_preinst() {
+    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g'
+}
+
 src_install() {
     cd release
 
@@ -82,7 +88,7 @@ src_install() {
     option server && dobin wsw_server && dobin wsw_server.*
     option server && dobin wswtv_server && dobin wswtv_server.*
 
-    insinto /usr/share/games/${PN}
+    insinto ${DATA_DIR}/${PN}
 
     doins -r ../../${BASE_PNV}_unified/basewsw
     doins -r {basewsw,libs}
