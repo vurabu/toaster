@@ -80,7 +80,7 @@ src_install() {
 
     option opengl && dobin ${PN} && dobin ${PN}.*
     option server && dobin wsw_server && dobin wsw_server.*
-                  && dobin wswtv_server && dobin wsw_server.*
+                  && dobin wswtv_server && dobin wswtv_server.*
 
     insinto /usr/share/games/${PN}
 
