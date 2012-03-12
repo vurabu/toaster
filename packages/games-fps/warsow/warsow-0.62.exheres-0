@@ -50,7 +50,7 @@ pkg_setup() {
 # FIXME
     export BASE_ARCH=amd64
     export BUILD_SND_QF=YES
-    export BUILD_ANGELWRAP=NO
+    export BUILD_ANGELWRAP=YES
     export BUILD_IRC=YES
 }
 
@@ -62,10 +62,10 @@ src_unpack() {
 }
 
 src_prepare() {
-    sed -i 's:openal-config:pkg-config:g' Makefile
+#    sed -i 's:openal-config:pkg-config:g' Makefile
     sed -i 's:--as-needed:-Wc,--as-needed:g' Makefile
-    sed -i 's:libopenal.so.0:libopenal.so:g' snd_openal/snd_main.c
-    sed -i 's:jpeg_mem_src:_jpeg_mem_src:g' ref_gl/r_image.c
+#    sed -i 's:libopenal.so.0:libopenal.so:g' snd_openal/snd_main.c
+#    sed -i 's:jpeg_mem_src:_jpeg_mem_src:g' ref_gl/r_image.c
 }
 
 src_compile() {
