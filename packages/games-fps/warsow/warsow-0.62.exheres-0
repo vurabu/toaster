@@ -13,7 +13,7 @@ DOWNLOADS="
 
 SLOT="0"
 PLATFORMS="amd64"
-MYOPTIONS="debug dedicated openal opengl"
+MYOPTIONS="debug server openal opengl"
 
 DEPENDENCIES="
     build+run:
@@ -40,26 +40,14 @@ DEPENDENCIES="
 WORK="${WORKBASE}/source"
 
 pkg_setup() {
-    if option opengl || ! option dedicated ; then
-        export BUILD_CLIENT=YES
-    fi
+    yesno() { option ${1} && echo YES || echo NO ; }
 
-    if option dedicated || ! option opengl ; then
-        export BUILD_SERVER=YES
-        export BUILD_TV_SERVER=YES
-    fi
-
-    if option openal ; then
-        export BUILD_SND_OPENAL=YES
-    else
-        export BUILD_SND_OPENAL=NO
-    fi
-
-    if option debug ; then
-        export DEBUG_BUILD=$(yesno debug)
-    fi
-   
-    # FIXME
+    export BUILD_CLIENT=$(yesno opengl)
+    export BUILD_SERVER=$(yesno server)
+    export BUILD_TV_SERVER=$(yesno server)
+    export BUILD_SND_OPENAL=$(yesno openal)
+    export DEBUG_BUILD=$(yesno debug)
+# FIXME
     export BASE_ARCH=amd64
     export BUILD_SND_QF=YES
     export BUILD_ANGELWRAP=YES
@@ -82,16 +70,16 @@ src_prepare() {
 
 src_compile() {
     cd ../libsrcs/angelscript/angelSVN/sdk/angelscript/projects/gnuc
-    make
+    emake
     cd ${WORK}
-    make
+    emake
 }
 
 src_install() {
     cd release
 
-    option opengl && dobin ${PN}.*
-    option dedicated && dobin wsw_server.* && dobin wswtv_server.*
+    option opengl && dobin ${PN}
+    option server && dobin wsw_server && dobin wswtv_server
 
     insinto /usr/share/games/${PN}
 
