@@ -78,7 +78,7 @@ src_compile() {
 DATA_DIR="/usr/share/games"
 
 pkg_preinst() {
-    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g'
+    sed -i 's:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g' release/warsow
 }
 
 src_install() {
