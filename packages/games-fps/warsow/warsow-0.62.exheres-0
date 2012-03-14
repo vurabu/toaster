@@ -74,7 +74,7 @@ src_compile() {
     option openal && emake openal
     option server && emake ded
     option tvserver && emake tv_server
-    option irc 
+    option irc && emake irc
     emake angelwrap qf cgame game ui
 }
 
