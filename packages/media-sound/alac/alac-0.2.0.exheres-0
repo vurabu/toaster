@@ -12,11 +12,11 @@ DEPENDENCIES="
 		sys-apps/sed
 "
 
-WORK=${WORKBASE}/${PN}
+#WORK=${WORKBASE}/${PN}
 
-src_prepare() {
-	sed -i -e "s:\(-o alac\):\$(LDFLAGS) \1:g" Makefile || die "sed failed"
-}
+#src_prepare() {
+#	sed -i -e "s:\(-o alac\):\$(LDFLAGS) \1:g" Makefile || die "sed failed"
+#}
 
 src_compile() {
 	emake
