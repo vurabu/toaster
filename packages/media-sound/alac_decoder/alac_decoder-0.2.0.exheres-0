@@ -12,7 +12,7 @@ DEPENDENCIES="
 		sys-apps/sed
 "
 
-WORK=${WORKDIR}/${PN}
+WORK=${WORKBASE}/${PN}
 
 src_prepare() {
 	sed -i -e "s:\(-o alac\):\$(LDFLAGS) \1:g" Makefile || die "sed failed"
