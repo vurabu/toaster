@@ -1,4 +1,4 @@
-# I wish warsow developers die from testicular cancer
+# Hey, buddy, how are you?
 # Distributed under the terms of the GNU General Public License v2
 
 BASE_VERSION=0.61
@@ -9,20 +9,14 @@ SDK="${PN}_${PV}_sdk"
 SUMMARY="A free online multiplayer fps based on the qfusion engine"
 HOMEPAGE="http://www.warsow.net/"
 DOWNLOADS="
-    http://www.zcdn.org/dl/${UNI}.zip
-    http://www.zcdn.org/dl/${UPD}.zip
-    http://www.zcdn.org/dl/${SDK}.zip
-"
-SLOT="0"
-PLATFORMS="amd64 x86"
-MYOPTIONS="
-    client
-    irc
-    openal
-    server
-    tvserver
+    http://www.zcdn.org/dl/$UNI.zip
+    http://www.zcdn.org/dl/$UPD.zip
+    http://www.zcdn.org/dl/$SDK.zip
 "
 
+SLOT="0"
+PLATFORMS="amd64 x86"
+MYOPTIONS="client irc openal server tvserver"
 DEPENDENCIES="
     build:
         app-arch/unzip
@@ -47,7 +41,9 @@ DEPENDENCIES="
 
 WORK="$WORKBASE/source"
 
-yesno() { option $1 && echo YES || echo NO ; }
+yesno() {
+    option $1 && echo YES || echo NO
+}
 
 pkg_setup() {
     export BUILD_CLIENT=$(yesno client)
@@ -58,15 +54,14 @@ pkg_setup() {
 }
 
 src_unpack() {
-    unpack ${SDK}.zip
-    unpack ${UNI}.zip
-    cd ${UNI} || die
-    unpack ${UPD}.zip
+    unpack $SDK.zip
+    unpack $UNI.zip
+    cd $UNI || die
+    unpack $UPD.zip
 }
 
 src_prepare() {
     sed -i "s:--as-needed:-Wc,--as-needed:g" Makefile || die
-#    sed -i "s:libopenal.so.0:libopenal.so:g" snd_openal/snd_main.c
 }
 
 src_compile() {
@@ -81,12 +76,12 @@ src_compile() {
 DATA_DIR="/usr/share/games/$PN"
 
 _dobin () {
-    sed -i "s:DATA_DIR=:DATA_DIR=$DATA_DIR:g" $1
+    sed -i "s:DATA_DIR=:DATA_DIR=$DATA_DIR:g" $1 || die
     dobin $1 && dobin $1.*
 }
 
 src_install() {
-    cd release
+    cd release || die
 
     option client && _dobin $PN
     option server && _dobin wsw_server
