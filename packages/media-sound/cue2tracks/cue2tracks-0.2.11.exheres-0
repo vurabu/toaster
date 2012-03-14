@@ -2,7 +2,7 @@
 
 SUMMARY="Script for split audio image files with cue sheet to tracks"
 HOMEPAGE="http://cyberdungeon.org.ru/~killy/projects/cue2tracks/"
-DOWNLOADS="http://www.ylsoftware.com/files/${PNV}.tar.bz2"
+DOWNLOADS="http://www.ylsoftware.com/files/$PNV.tar.bz2"
 
 SLOT="0"
 PLATFORMS="~x86 ~amd64"
@@ -19,11 +19,11 @@ DEPENDENCIES="
         media-sound/shntool
 "
 
-src_prepare () {
-    expatch ${FILES}/remove_shell_check.patch
-}
+DEFAULT_SRC_PREPARE_PATCHES=(
+    $FILES/remove_shell_check.patch
+)
 
 src_install() {
-    dobin "${PN}"
+    dobin $PN
     dodoc AUTHORS INSTALL ChangeLog README TODO
 }

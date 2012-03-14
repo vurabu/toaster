@@ -1,8 +1,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
+N="alac_decoder"
+
 SUMMARY="Basic decoder for Apple Lossless Audio Codec files (ALAC)"
 HOMEPAGE="http://craz.net/programs/itunes/alac.html"
-N="alac_decoder"
 DOWNLOADS="http://craz.net/programs/itunes/files/$N-$PV.tgz"
 
 SLOT="0"
