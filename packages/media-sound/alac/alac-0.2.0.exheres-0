@@ -2,7 +2,8 @@
 
 SUMMARY="Basic decoder for Apple Lossless Audio Codec files (ALAC)"
 HOMEPAGE="http://craz.net/programs/itunes/alac.html"
-DOWNLOADS="http://craz.net/programs/itunes/files/${PNV}.tgz"
+ANAME="${PN}_decoder-${PV}.tgz"
+DOWNLOADS="http://craz.net/programs/itunes/files/${ANAME}"
 
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
