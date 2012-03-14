@@ -1,93 +1,105 @@
 # I wish warsow developers die from testicular cancer
 # Distributed under the terms of the GNU General Public License v2
 
-CUR_PNV=${PN}_${PV}
-BASE_PNV=${PN}_0.61
-SUMMARY="A free online multiplayer FPS based on the Qfusion engine"
+BASE_VERSION=0.61
+UNI="${PN}_${BASE_VERSION}_unified"
+UPD="${PN}_${PV}_update"
+SDK="${PN}_${PV}_sdk"
+
+SUMMARY="A free online multiplayer fps based on the qfusion engine"
 HOMEPAGE="http://www.warsow.net/"
 DOWNLOADS="
-    http://www.zcdn.org/dl/${BASE_PNV}_unified.zip
-    http://www.zcdn.org/dl/${CUR_PNV}_update.zip
-    http://www.zcdn.org/dl/${CUR_PNV}_sdk.zip
+    http://www.zcdn.org/dl/${UNI}.zip
+    http://www.zcdn.org/dl/${UPD}.zip
+    http://www.zcdn.org/dl/${SDK}.zip
+"
+SLOT="0"
+PLATFORMS="amd64 x86"
+MYOPTIONS="
+    debug
+    client
+    server
+    tvserver
+    irc
+    openal
+    platform:
+        amd64
+        x86
 "
 
-SLOT="0"
-PLATFORMS="amd64"
-MYOPTIONS="debug server openal opengl"
-
 DEPENDENCIES="
-    build+run:
+    build:
         app-arch/unzip
         x11-utils/makedepend
         openal? ( dev-util/pkg-config )
-        opengl? (
-            build:
-                x11-proto/xf86dgaproto
-                x11-proto/xf86vidmodeproto
-                x11-proto/xineramaproto
-            run:
-                media-libs/jpeg
-                media-libs/libvorbis
-                media-libs/SDL
-                x11-dri/mesa
-                x11-libs/libXinerama
-                x11-libs/libXxf86dga
-                x11-libs/libXxf86vm
-                openal? ( media-libs/openal )
-        )
+    client? (
+        build:
+            x11-proto/xf86dgaproto
+            x11-proto/xf86vidmodeproto
+            x11-proto/xineramaproto
+        run:
+            media-libs/jpeg
+            media-libs/libvorbis
+            media-libs/SDL
+            x11-dri/mesa
+            x11-libs/libXinerama
+            x11-libs/libXxf86dga
+            x11-libs/libXxf86vm
+            openal? ( media-libs/openal )
+    )
 "
 
-WORK="${WORKBASE}/source"
+WORK="$WORKBASE/source"
+
+yesno() { option $1 && echo YES || echo NO ; }
+noyes() { option $1 && echo NO || echo YES ; }
 
 pkg_setup() {
-    yesno() { option ${1} && echo YES || echo NO ; }
-
-    export BUILD_CLIENT=$(yesno opengl)
+    export BUILD_CLIENT=$(yesno client)
+    export BUILD_THIN_CLIENT=$(noyes server)
     export BUILD_SERVER=$(yesno server)
-    export BUILD_TV_SERVER=$(yesno server)
+    export BUILD_TV_SERVER=$(yesno tvserver)
+    export BUILD_IRC=$(yesno irc)
     export BUILD_SND_OPENAL=$(yesno openal)
     export DEBUG_BUILD=$(yesno debug)
-# FIXME
-    export BASE_ARCH=amd64
     export BUILD_SND_QF=YES
-    export BUILD_ANGELWRAP=YES
-    export BUILD_IRC=YES
 }
 
 src_unpack() {
-    unpack ${CUR_PNV}_sdk.zip
-    unpack ${BASE_PNV}_unified.zip
-    cd ${BASE_PNV}_unified || die
-    unpack ${CUR_PNV}_update.zip
+    unpack ${SDK}.zip
+    unpack ${UNI}.zip
+    cd ${UNI} || die
+    unpack ${UPD}.zip
 }
 
 src_prepare() {
-#    sed -i "s:openal-config:pkg-config:g" Makefile
-    sed -i "s:--as-needed:-Wc,--as-needed:g" Makefile
+    sed -i "s:--as-needed:-Wc,--as-needed:g" Makefile || die
 #    sed -i "s:libopenal.so.0:libopenal.so:g" snd_openal/snd_main.c
-#    sed -i "s:jpeg_mem_src:_jpeg_mem_src:g" ref_gl/r_image.c
 }
 
-src_compile() {
+#src_compile() {
 #    cd ../libsrcs/angelscript/angelSVN/sdk/angelscript/projects/gnuc
 #    make
 #    cd ${WORK}
-    emake
-}
+#    emake
+#}
 
-DATA_DIR="/usr/share/games"
+DATA_DIR="/usr/share/games/$PN"
+
+_dobin () {
+    sed -i "s:DATA_DIR=:DATA_DIR=$DATA_DIR:g" $1
+    dobin $1 && dobin $1.*
+}
 
 src_install() {
     cd release
 
-    sed -i "s:DATA_DIR=:DATA_DIR=${DATA_DIR}/${PN}:g" warsow
+    option client && _dobin $PN
+    option server && _dobin wsw_server
+    option tvserver && _dobin wswtv_server
 
-    option opengl && dobin ${PN} && dobin ${PN}.*
-    option server && dobin wsw_server && dobin wsw_server.*
-    option server && dobin wswtv_server && dobin wswtv_server.*
+    insinto $DATA_DIR
 
-    insinto ${DATA_DIR}/${PN}
-
-    doins -r ../../${BASE_PNV}_unified/basewsw
+    doins -r $WORKBASE/$UNI/basewsw
     doins -r {basewsw,libs}
 }
