@@ -17,7 +17,6 @@ SLOT="0"
 PLATFORMS="amd64 x86"
 MYOPTIONS="
     client
-    debug
     irc
     openal
     server
@@ -49,17 +48,13 @@ DEPENDENCIES="
 WORK="$WORKBASE/source"
 
 yesno() { option $1 && echo YES || echo NO ; }
-noyes() { option $1 && echo NO || echo YES ; }
 
 pkg_setup() {
     export BUILD_CLIENT=$(yesno client)
-    export BUILD_THIN_CLIENT=$(noyes server)
     export BUILD_SERVER=$(yesno server)
     export BUILD_TV_SERVER=$(yesno tvserver)
     export BUILD_IRC=$(yesno irc)
     export BUILD_SND_OPENAL=$(yesno openal)
-    export DEBUG_BUILD=$(yesno debug)
-    export BUILD_SND_QF=YES
 }
 
 src_unpack() {
@@ -74,12 +69,14 @@ src_prepare() {
 #    sed -i "s:libopenal.so.0:libopenal.so:g" snd_openal/snd_main.c
 }
 
-#src_compile() {
-#    cd ../libsrcs/angelscript/angelSVN/sdk/angelscript/projects/gnuc
-#    make
-#    cd ${WORK}
-#    emake
-#}
+src_compile() {
+    option client && emake client
+    option openal && emake openal
+    option server && emake ded
+    option tvserver && emake tv_server
+    option irc 
+    emake angelwrap qf cgame game ui
+}
 
 DATA_DIR="/usr/share/games/$PN"
 
