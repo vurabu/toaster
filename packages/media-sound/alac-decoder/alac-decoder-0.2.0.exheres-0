@@ -2,7 +2,7 @@
 
 SUMMARY="Basic decoder for Apple Lossless Audio Codec files (ALAC)"
 HOMEPAGE="http://craz.net/programs/itunes/alac.html"
-N=`echo $PN | sed "s:_:-:"`
+N="`echo $PN | sed 's:_:-:'`"
 A="$N-$PV.tgz"
 DOWNLOADS="http://craz.net/programs/itunes/files/$A"
 
