@@ -2,7 +2,9 @@
 
 SUMMARY="Basic decoder for Apple Lossless Audio Codec files (ALAC)"
 HOMEPAGE="http://craz.net/programs/itunes/alac.html"
-DOWNLOADS="http://craz.net/programs/itunes/files/${PNV}.tgz"
+N=`echo $PN | sed "s:_:-:"`
+A="$N-$PV.tgz"
+DOWNLOADS="http://craz.net/programs/itunes/files/$A"
 
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
@@ -12,7 +14,7 @@ DEPENDENCIES="
 		sys-apps/sed
 "
 
-#WORK=${WORKBASE}/${PN}
+WORK="$WORKBASE/$N"
 
 #src_prepare() {
 #	sed -i -e "s:\(-o alac\):\$(LDFLAGS) \1:g" Makefile || die "sed failed"
