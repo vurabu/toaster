@@ -1,0 +1,28 @@
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Basic decoder for Apple Lossless Audio Codec files (ALAC)"
+HOMEPAGE="http://craz.net/programs/itunes/alac.html"
+DOWNLOADS="http://craz.net/programs/itunes/files/${P}.tgz"
+
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+	build:
+		sys-apps/sed
+"
+
+WORK=${WORKDIR}/${PN}
+
+src_prepare() {
+	sed -i -e "s:\(-o alac\):\$(LDFLAGS) \1:g" Makefile || die "sed failed"
+}
+
+src_compile() {
+	emake
+}
+
+src_install() {
+	dobin alac || die "dobin failed"
+	dodoc README
+}
