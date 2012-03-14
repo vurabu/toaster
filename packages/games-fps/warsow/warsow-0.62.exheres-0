@@ -16,15 +16,12 @@ DOWNLOADS="
 SLOT="0"
 PLATFORMS="amd64 x86"
 MYOPTIONS="
-    debug
     client
-    server
-    tvserver
+    debug
     irc
     openal
-    platform:
-        amd64
-        x86
+    server
+    tvserver
 "
 
 DEPENDENCIES="
