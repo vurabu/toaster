@@ -64,9 +64,11 @@ src_prepare() {
 }
 
 src_compile() {
-    for i in client openal irc; option $i && emake irc
+    option client && emake client
+    option openal && emake openal
     option server && emake ded
     option tvserver && emake tv_server
+    option irc && emake irc
     emake angelwrap qf cgame game ui
 }
 
