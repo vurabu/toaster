@@ -81,7 +81,7 @@ _dobin () {
 
 src_install() {
     cd release || die
-    option client && _dobin client
+    option client && _dobin $PN
     option server && _dobin wsw_server
     option tvserver && _dobin wswtv_server
     insinto $DATA_DIR
