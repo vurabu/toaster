@@ -64,7 +64,7 @@ src_prepare() {
 }
 
 src_compile() {
-    for i in client openal irc do option $i && emake irc
+    for i in client openal irc; do option $i && emake irc
     option server && emake ded
     option tvserver && emake tv_server
     emake angelwrap qf cgame game ui
@@ -79,7 +79,9 @@ _dobin () {
 
 src_install() {
     cd release || die
-    for i in client server tvserver do option $i && _dobin $i
+    option client && _dobin client
+    option server && _dobin wsw_server
+    option tvserver && _dobin wswtv_server
     insinto $DATA_DIR
     doins -r $WORKBASE/$UNI/basewsw
     doins -r {basewsw,libs}
