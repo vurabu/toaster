@@ -8,6 +8,9 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
 src_unpack() {
+    echo $ARCHIVES
+    echo $WORKBASE
+    ls -la
     cp $ARCHIVES $WORKBASE
 }
 
