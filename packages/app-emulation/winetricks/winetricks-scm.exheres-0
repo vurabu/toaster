@@ -1,17 +1,16 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Script to download and install dlls needed to run some programs in wine"
-HOMEPAGE="http://winetricks.org/"
-DOWNLOADS="http://winetricks.org/winetricks"
+HOMEPAGE="http://$PN.org/"
+URI="http://$PN.org/$PN"
 
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
-WORK=$WORKBASE
+src_unpack() {
+    wget $URI || die
+}
 
 src_install() {
-    echo $WORKBASE
-    echo $WORK
-    pwd
     dobin $PN
 }
