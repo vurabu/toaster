@@ -1,14 +1,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Script to download and install dlls needed to run some programs in wine"
-HOMEPAGE="http://$PN.org/"
-URI="http://$PN.org/$PN"
+HOMEPAGE="http://winetricks.org/"
+DOWNLOADS="http://winetricks.org/$PN"
 
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
 src_unpack() {
-    wget $URI || die
+    wget $DOWNLOADS || die
 }
 
 src_install() {
