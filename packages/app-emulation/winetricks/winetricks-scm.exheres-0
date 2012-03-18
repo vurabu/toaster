@@ -10,5 +10,8 @@ PLATFORMS="~amd64 ~x86"
 WORK=$WORKBASE
 
 src_install() {
+    echo $WORKBASE
+    echo $WORK
+    pwd
     dobin $PN
 }
