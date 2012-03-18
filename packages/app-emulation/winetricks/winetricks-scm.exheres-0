@@ -13,5 +13,5 @@ src_unpack() {
 }
 
 src_install() {
-    dobin $PN
+    dobin $WORK/$PN
 }
