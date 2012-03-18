@@ -8,7 +8,7 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
 src_prepare() {
-    :
+    true
 }
 
 src_install() {
