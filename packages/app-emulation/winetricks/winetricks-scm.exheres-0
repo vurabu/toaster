@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="Is a script to download and install dlls needed to run some programs in wine"
+SUMMARY="Script to download and install dlls needed to run some programs in wine"
 HOMEPAGE="http://winetricks.org/"
 DOWNLOADS="http://winetricks.org/winetricks"
 
