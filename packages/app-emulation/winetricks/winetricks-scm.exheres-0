@@ -7,11 +7,8 @@ DOWNLOADS="http://winetricks.org/winetricks"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
-src_unpack() {
-    mkdir $WORK
-    mv $PN $WORK
-}
+WORK=$WORKBASE
 
 src_install() {
-    dobin $WORK/$PN
+    dobin $PN
 }
