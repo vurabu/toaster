@@ -9,6 +9,8 @@ PLATFORMS="~amd64 ~x86"
 
 src_unpack() {
     wget $DOWNLOADS || die
+    pwd
+    echo $WORK
 }
 
 src_install() {
