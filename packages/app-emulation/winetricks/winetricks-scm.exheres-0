@@ -7,8 +7,9 @@ DOWNLOADS="http://winetricks.org/winetricks"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
-src_prepare() {
-    true
+src_unpack() {
+    mkdir $WORK
+    mv $PN $WORK
 }
 
 src_install() {
