@@ -7,6 +7,12 @@ DOWNLOADS="http://$PN.org/$PN"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
+src_unpack() {
+    cp $ARCHIVES $WORKBASE
+}
+
+WORK=$WORKBASE
+
 src_install() {
     dobin $PN
 }
