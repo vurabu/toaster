@@ -1,15 +1,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
-SMMARY="Is a script to download and install dlls needed to run some programs in wine"
+SUMMARY="Is a script to download and install dlls needed to run some programs in wine"
 HOMEPAGE="http://winetricks.org/"
 DOWNLOADS="http://winetricks.org/winetricks"
 
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
-#src_unpack() {
-#   wget "$SRC_WEB" -O "${PN}" || die
-#}
+src_prepare() {
+}
 
 src_install() {
     dobin $PN
