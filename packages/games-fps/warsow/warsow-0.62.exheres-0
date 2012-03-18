@@ -6,7 +6,7 @@ UPD="${PN}_${PV}_update"
 SDK="${PN}_${PV}_sdk"
 
 SUMMARY="A free online multiplayer fps based on the qfusion engine"
-HOMEPAGE="http://www.warsow.net/"
+HOMEPAGE="http://www.$PN.net/"
 DOWNLOADS="
     http://www.zcdn.org/dl/$UNI.zip
     http://www.zcdn.org/dl/$UPD.zip
