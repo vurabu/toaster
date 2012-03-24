@@ -1,0 +1,24 @@
+# Copyright 2012 Taras Pashkin <vurabu@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require scm-git
+
+SUMMARY="Girara is a library that implements a user interface that focuses on simplicity and minimalism"
+HOMEPAGE="http://pwmt.org"
+SCM_REPOSITORY="git://pwmt.org/girara.git"
+
+SLOT="0"
+PLATFORMS="x86 amd64"
+MYOPTIONS="gtk"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+[gtk=]
+"
+
+BUGS_TO="vurabu@gmail.com"
+
+DEFAULT_SRC_COMPILE_PARAMS=("GIRARA_GTK_VERSION=3")
+DEFAULT_SRC_INSTALL_PARAMS=("GIRARA_GTK_VERSION=3")
+
+
